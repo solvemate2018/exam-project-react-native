@@ -1,0 +1,39 @@
+{
+    "events": [
+        {
+            "name": "Easter hunting",
+            "category": "Holiday",
+            "dateTime": "2022-07-26T18:09:16Z",
+            "location": "Back yard",
+            "pictureUrl": "https://static.officeholidays.com/images/1280x853c/easter-eggs-10.jpg"
+        },
+        {
+            "name": "Halloween party",
+            "category": "Holiday",
+            "dateTime": "2022-08-26T18:09:16Z",
+            "location": "Basement",
+            "pictureUrl": "https://www.history.com/.image/t_share/MTY3NDg4OTU3NjQxMTQwMDEz/halloween-gettyimages-172988453.jpg"
+        },
+        {
+            "name": "Career fair",
+            "category": "Work",
+            "dateTime": "2022-06-26T18:09:16Z",
+            "location": "Main hall",
+            "pictureUrl": "https://www.hram.org/resource/resmgr/hram_logos/career_fair_logo.jpg"
+        },
+        {
+            "name": "Volunteer fair",
+            "category": "Work",
+            "dateTime": "2022-04-26T18:09:16Z",
+            "location": "Main hall",
+            "pictureUrl": "https://www.alsc.ala.org/blog/wp-content/uploads/2016/04/volunteer.jpg"
+        },
+        {
+            "name": "Quiz night",
+            "category": "Social",
+            "dateTime": "2022-06-16T18:09:16Z",
+            "location": "Main hall",
+            "pictureUrl": "https://canopylab.com/wp-content/uploads/2020/05/Working-with-adaptive-quizzes-A-beginners-guide.jpg"
+        }
+    ]
+}
