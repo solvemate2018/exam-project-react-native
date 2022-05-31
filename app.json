@@ -24,12 +24,14 @@
       "adaptiveIcon": {
         "foregroundImage": "./app/assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.heroshima.examprojectmyversion"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "sdkVersion": "44.0.0"
+    "sdkVersion": "44.0.0",
+    "entryPoint": ".vscode\\exponentIndex.js"
   },
   "name": "exam-project"
 }

@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
         height: "100%",
         width: "100%",
         paddingTop: StatusBar.currentHeight - 40,
-
     },
     loading: {
         fontSize: 40

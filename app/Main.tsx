@@ -15,6 +15,7 @@ import MenuScreen from "./screens/auth/MenuScreen";
 import TabBarIcon from "./components/TabBarIcon";
 import { StyleSheet } from "react-native";
 import { fetchAll } from "./stores/actions/event.actions";
+import MenuNavigation from "./screens/navigations/MenuNavigation";
 
 
 
@@ -59,7 +60,7 @@ export default function Main() {
                         tabBarShowLabel: false,
                         title: "CHAT"
                     }} />
-                    <Tab.Screen name="Menu" component={MenuScreen} options={{
+                    <Tab.Screen name="MenuTab" component={MenuNavigation} options={{
                         tabBarIcon: ({ focused, size, color }) => <TabBarIcon type="menu" text="Menu" focused={focused} />,
                         tabBarShowLabel: false,
                         title: "MENU"

@@ -75,8 +75,6 @@ export const login = (email: string, password: string) => {
             })
         });
 
-        console.log(JSON.stringify(response));
-
         if (response.ok) {
             const data: FirebaseSignupSuccess = await response.json();
             const user = new User(data.email, '', '');
