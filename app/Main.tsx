@@ -25,7 +25,7 @@ export default function Main() {
     const Tab = createBottomTabNavigator();
 
     return (
-        user !== null ? (
+        user == null ? (
             <NavigationContainer>
                 <Stack.Navigator screenOptions={({ route, navigation }) => ({
                     headerShown: false,

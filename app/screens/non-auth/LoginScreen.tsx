@@ -5,6 +5,8 @@ import { login } from '../../stores/actions/user.actions';
 import { StackParamList } from '../../typings/navigations';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import PasswordValidator from 'password-validator';
+import { validate } from 'email-validator';
 
 type ScreenNavigationType = NativeStackNavigationProp<StackParamList, "Login">;
 
@@ -15,6 +17,15 @@ export function LoginScreen() {
 
     const navigation = useNavigation<ScreenNavigationType>();
 
+    let passwordSchema = new PasswordValidator();
+    passwordSchema
+        .is().min(6)
+        .is().max(100)
+        .has().uppercase()
+        .has().lowercase()
+        .has().digits(1)
+        .has().not().spaces()
+
     return (
         <View style={styles.container}>
             <View style={styles.emptyHeader} />
@@ -23,11 +34,13 @@ export function LoginScreen() {
                 <Text style={styles.header}>Log in</Text>
             </View>
             <TextInput placeholderTextColor="#32305D" style={styles.textField} value={email} placeholder="E-MAIL" onChangeText={setEmail} />
-            <TextInput placeholderTextColor="#32305D" style={styles.textField} value={password} placeholder="PASSWORD" onChangeText={setPassword} />
+            {!validate(email) && email != "" && <Text style={styles.errorText}>This is not a proper Email</Text>}
+            <TextInput secureTextEntry={true} placeholderTextColor="#32305D" style={styles.textField} value={password} placeholder="PASSWORD" onChangeText={setPassword} />
+            {!passwordSchema.validate(password) && password != "" && <Text style={styles.errorText}>Should include: 1 Uppercase letter, 1 Lowercase letter and 1 Number</Text>}
             <View style={styles.button}>
                 <Button title="Log in" color="#32305D" onPress={() => dispatch(login(email, password))} />
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+            <TouchableOpacity onPress={() => { if (validate(email) && passwordSchema.validate(password)) dispatch(login(email, password)); else alert("Cannot login with invalid data") }}>
                 <Text style={styles.loginLink}>Don't have an account? Sign up!</Text>
             </TouchableOpacity>
         </View>
@@ -68,6 +81,10 @@ const styles = StyleSheet.create({
     },
     emptyHeader: {
         height: 100
+    },
+    errorText: {
+        fontSize: 10,
+        color: "red"
     }
 })
 export default LoginScreen;

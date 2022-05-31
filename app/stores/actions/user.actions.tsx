@@ -20,7 +20,8 @@ export const logout = () => {
 export const signup = (email: string, password: string, repeatPassword: string) => {
     return async (dispatch: any, getState: any) => {
         if (password != repeatPassword) {
-            //throw new error
+            alert("The passwords are not matching");
+            return;
         }
         let response;
         try {
@@ -47,14 +48,13 @@ export const signup = (email: string, password: string, repeatPassword: string) 
             const data: FirebaseSignupSuccess = await response.json();
             const user = new User(data.email, '', '');
 
-            //Save current user in the store
             await SecureStore.setItemAsync('itToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user));
 
             dispatch({ type: SIGNUP, payload: { user, idToken: data.idToken } })
         }
         else {
-            //throw error or sth
+            alert("Server error, please try again later")
         }
     }
 }
@@ -75,20 +75,17 @@ export const login = (email: string, password: string) => {
             })
         });
 
-        console.log(JSON.stringify(response));
-
         if (response.ok) {
             const data: FirebaseSignupSuccess = await response.json();
             const user = new User(data.email, '', '');
 
-            //Save current user in the store
             await SecureStore.setItemAsync('itToken', data.idToken);
             await SecureStore.setItemAsync('user', JSON.stringify(user));
 
             dispatch({ type: SIGNUP, payload: { user, idToken: data.idToken } })
         }
         else {
-            //throw error or sth
+            alert("Invalid username and password!")
         }
     }
 }

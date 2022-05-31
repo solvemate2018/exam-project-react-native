@@ -1,10 +1,16 @@
+import { useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../App';
+import SettingsOption from '../../components/SettingsOption';
+import { logout } from '../../stores/actions/user.actions';
 
 export default function MenuScreen() {
     const user = useSelector((state: RootState) => state.user.loggedInUser)
+    const dispatch = useDispatch();
+
     return (
         <View style={styles.container}>
             <View style={styles.userInfo}>
@@ -13,19 +19,27 @@ export default function MenuScreen() {
                 </View>
                 <View style={styles.profileInfoView}>
                     <Text style={styles.username}>{"user.fullName"}</Text>
-                    <Text style={styles.userEmail}>{"user.email"}</Text>
+                    <Text style={styles.userEmail}>{user.email}</Text>
                     <Text style={styles.userCourse}>{"user.specialty"}</Text>
                 </View>
             </View>
             <TouchableOpacity style={styles.editProfileButton}>
                 <Text style={styles.editProfileText}>Edit profile</Text>
             </TouchableOpacity>
-            <View
-                style={{
-                    borderBottomColor: 'black',
-                    borderBottomWidth: 1,
-                }}
-            />
+            <View style={styles.line} />
+            <View style={styles.optionCategory}>
+                <Text style={styles.username}>Notifications</Text>
+            </View>
+            <View style={styles.options}>
+                <SettingsOption name="Chat" description="When you receive a new message" />
+                <SettingsOption name="Event reminder" description="An hour before events you are 'going to'" />
+            </View>
+            <View style={styles.line} />
+            <View style={styles.logout} >
+                <TouchableOpacity style={styles.logoutButton} onPress={() => dispatch(logout())}>
+                    <Text style={styles.logoutButtonText}>LOG OUT</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -79,5 +93,42 @@ const styles = StyleSheet.create({
     },
     userCourse: {
         fontSize: 13,
+    },
+    optionCategory: {
+        height: 60,
+        width: "90%",
+        justifyContent: "center",
+        alignSelf: "center"
+    },
+    line: {
+        borderBottomColor: '#dce0dd',
+        borderBottomWidth: 1,
+        height: 30,
+        width: "85%"
+    },
+    options: {
+        width: "90%",
+        height: 220,
+        alignItems: "center",
+        justifyContent: "space-evenly"
+    },
+    logoutButton: {
+        height: 60,
+        backgroundColor: "white",
+        width: "100%",
+        borderRadius: 8,
+        alignItems: "center",
+        justifyContent: "center",
+        alignSelf: "center",
+    },
+    logoutButtonText: {
+        fontSize: 20,
+        color: "#32305D",
+        fontWeight: "bold",
+    },
+    logout: {
+        width: "90%",
+        flex: 1,
+        justifyContent: "space-evenly"
     }
 })
